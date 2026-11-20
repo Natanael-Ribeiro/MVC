@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Biblioteca</title>
+</head>
+<body>
+<h1>Sistema de Biblioteca</h1>
+<nav>
+	<a href="/">Inicio</a> |
+	<a href="/livros">Livros</a> |
+	<a href="/usuarios">Usuarios</a> |
+	<a href="/emprestimos">Emprestimos</a>
+</nav>
+<hr>
+<p>Livros cadastrados: <span th:text="${totalLivros}">0</span></p>
+<p>Usuarios cadastrados: <span th:text="${totalUsuarios}">0</span></p>
+<p>Emprestimos registrados: <span th:text="${totalEmprestimos}">0</span></p>
+</body>
+</html>

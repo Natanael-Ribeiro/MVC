@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Livros</title>
+</head>
+<body>
+<h1>Livros</h1>
+<nav>
+	<a href="/">Inicio</a> |
+	<a href="/livros">Livros</a> |
+	<a href="/usuarios">Usuarios</a> |
+	<a href="/emprestimos">Emprestimos</a>
+</nav>
+<hr>
+<a href="/livros/novo">Novo Livro</a>
+<br><br>
+<table border="1" cellpadding="6">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titulo</th>
+			<th>Autor</th>
+			<th>ISBN</th>
+			<th>Ano</th>
+			<th>Disponivel</th>
+			<th>Acoes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="livro : ${livros}">
+			<td th:text="${livro.id}"></td>
+			<td th:text="${livro.titulo}"></td>
+			<td th:text="${livro.autor}"></td>
+			<td th:text="${livro.isbn}"></td>
+			<td th:text="${livro.anoPublicacao}"></td>
+			<td th:text="${livro.quantidadeDisponivel}"></td>
+			<td>
+				<a th:href="@{/livros/editar/{id}(id=${livro.id})}">Editar</a> |
+				<a th:href="@{/livros/excluir/{id}(id=${livro.id})}">Excluir</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Emprestimos</title>
+</head>
+<body>
+<h1>Emprestimos</h1>
+<nav>
+	<a href="/">Inicio</a> |
+	<a href="/livros">Livros</a> |
+	<a href="/usuarios">Usuarios</a> |
+	<a href="/emprestimos">Emprestimos</a>
+</nav>
+<hr>
+<a href="/emprestimos/novo">Novo Emprestimo</a>
+<br><br>
+<table border="1" cellpadding="6">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Livro</th>
+			<th>Usuario</th>
+			<th>Data Emprestimo</th>
+			<th>Devolucao Prevista</th>
+			<th>Status</th>
+			<th>Acoes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="emp : ${emprestimos}">
+			<td th:text="${emp.id}"></td>
+			<td th:text="${emp.livro.titulo}"></td>
+			<td th:text="${emp.usuario.nome}"></td>
+			<td th:text="${emp.dataEmprestimo}"></td>
+			<td th:text="${emp.dataDevolucaoPrevista}"></td>
+			<td th:text="${emp.devolvido ? 'Devolvido' : 'Em aberto'}"></td>
+			<td>
+				<a th:if="${!emp.devolvido}" th:href="@{/emprestimos/devolver/{id}(id=${emp.id})}">Devolver</a>
+				<span th:if="${emp.devolvido}">-</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

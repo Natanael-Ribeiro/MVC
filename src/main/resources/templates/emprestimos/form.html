@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Novo Emprestimo</title>
+</head>
+<body>
+<h1>Novo Emprestimo</h1>
+<nav>
+	<a href="/">Inicio</a> |
+	<a href="/livros">Livros</a> |
+	<a href="/usuarios">Usuarios</a> |
+	<a href="/emprestimos">Emprestimos</a>
+</nav>
+<hr>
+<form th:action="@{/emprestimos/salvar}" method="post">
+	<p>
+		<label>Livro:</label><br>
+		<select name="livroId" required>
+			<option th:each="livro : ${livros}" th:if="${livro.quantidadeDisponivel > 0}" th:value="${livro.id}" th:text="${livro.titulo + ' (Disponivel: ' + livro.quantidadeDisponivel + ')'}"></option>
+		</select>
+	</p>
+	<p>
+		<label>Usuario:</label><br>
+		<select name="usuarioId" required>
+			<option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome + ' (' + usuario.matricula + ')'}"></option>
+		</select>
+	</p>
+	<p>
+		<label>Prazo (dias):</label><br>
+		<input type="number" name="dias" value="7" min="1" required>
+	</p>
+	<button type="submit">Registrar</button>
+	<a href="/emprestimos">Cancelar</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Livro</title>
+</head>
+<body>
+<h1>Cadastro de Livro</h1>
+<nav>
+	<a href="/">Inicio</a> |
+	<a href="/livros">Livros</a> |
+	<a href="/usuarios">Usuarios</a> |
+	<a href="/emprestimos">Emprestimos</a>
+</nav>
+<hr>
+<form th:action="@{/livros/salvar}" th:object="${livro}" method="post">
+	<input type="hidden" th:field="*{id}">
+	<p>
+		<label>Titulo:</label><br>
+		<input type="text" th:field="*{titulo}" required>
+	</p>
+	<p>
+		<label>Autor:</label><br>
+		<input type="text" th:field="*{autor}" required>
+	</p>
+	<p>
+		<label>ISBN:</label><br>
+		<input type="text" th:field="*{isbn}" required>
+	</p>
+	<p>
+		<label>Ano de Publicacao:</label><br>
+		<input type="number" th:field="*{anoPublicacao}" required>
+	</p>
+	<p>
+		<label>Quantidade Disponivel:</label><br>
+		<input type="number" th:field="*{quantidadeDisponivel}" min="0" required>
+	</p>
+	<button type="submit">Salvar</button>
+	<a href="/livros">Cancelar</a>
+</form>
+</body>
+</html>
